@@ -5,7 +5,6 @@ pipeline {  //Required, must be top-level
     stage("build") {  //Can declare as many stages as we like
       steps {
         echo 'building the application'
-        echo 'application built'
       }
     }
     
