@@ -50,7 +50,7 @@ pipeline {  //Required, must be top-level
         echo "deploying with ${SERVER_CREDENTISALS}"  //Of course we won't print the credentials here if it was a real project
         sh "${SERVER_CREDENTISALS}"
         
-        echo "deploying version params.VERSION"
+        echo "deploying version ${params.VERSION}"
         
         withCredentials([
           //Stores the user name into the 'USER' variable and the password into 'PWD'
