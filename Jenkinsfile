@@ -61,6 +61,7 @@ pipeline {  //Required, must be top-level
       }
     }
   }
+  /*
   post {  // Runs after all the stages are done. Specify logic that should under some condition (build status or build status change)
     always {
       //Is always run, no matter if the build succeeded or failed
@@ -73,4 +74,5 @@ pipeline {  //Required, must be top-level
       //Only run on failure
     }
   }
+  */
 }
