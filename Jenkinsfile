@@ -47,17 +47,17 @@ pipeline {  //Required, must be top-level
     stage("deploy") {
       steps {
         echo 'deploying the application'
+        echo "deploying version ${params.VERSION}"
+        /*
         echo "deploying with ${SERVER_CREDENTISALS}"  //Of course we won't print the credentials here if it was a real project
         sh "${SERVER_CREDENTISALS}"
-        
-        echo "deploying version ${params.VERSION}"
-        
         withCredentials([
           //Stores the user name into the 'USER' variable and the password into 'PWD'
             usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PWD) //The type of credential we created in Jenkins is 'Username with password'
         ]) {
           sh "some script ${USER} ${PWD}"
         }
+        */
       }
     }
   }
