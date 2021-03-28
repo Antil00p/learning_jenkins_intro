@@ -19,7 +19,7 @@ pipeline {  //Required, must be top-level
   
   stages {  //Required - where the work happens
     stage("init") {
-      step {
+      steps {
         script {
           // Here we can defin groovy functions and variables
           gv = load "script.groovy"
