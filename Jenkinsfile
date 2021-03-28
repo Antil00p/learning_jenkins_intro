@@ -61,7 +61,7 @@ pipeline {  //Required, must be top-level
     stage("deploy") {
       steps {
         script {
-          gv.deplyApp()
+          gv.deployApp()
         }
         
         /*
