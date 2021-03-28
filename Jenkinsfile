@@ -1,4 +1,6 @@
 //CODE_CHANGES = getGitChanges()  //<-- some groovy script that checks whether there has been any code change
+def groovy // Defined here so that we can use it in all stages
+
 pipeline {  //Required, must be top-level
   agent any //Required - where to execute
   tools { //Build tools for your project: gradle, maven, jdk (only these three are available per default)
@@ -16,6 +18,14 @@ pipeline {  //Required, must be top-level
   }
   
   stages {  //Required - where the work happens
+    stage("init") {
+      step {
+        script {
+          // Here we can defin groovy functions and variables
+          gv = load "script.groovy"
+        } 
+      }
+    }
     stage("build") {  //Can declare as many stages as we like
       /*
       when {
@@ -25,7 +35,9 @@ pipeline {  //Required, must be top-level
       }
       */
       steps {
-        echo 'building the application'
+        script {
+          gv.buildApp()
+        }
         //sh 'mvn install ..'
         echo "building version ${NEW_VERSION}"  //<-- OBS, must be double quotes, else it will be read as a string not a variable
       }
@@ -40,14 +52,18 @@ pipeline {  //Required, must be top-level
         }
       }
       steps {
-        echo 'testing the application'
+        script {
+          gv.testApp()
+        }
       }
     }
     
     stage("deploy") {
       steps {
-        echo 'deploying the application'
-        echo "deploying version ${params.VERSION}"
+        script {
+          gv.deplyApp()
+        }
+        
         /*
         echo "deploying with ${SERVER_CREDENTISALS}"  //Of course we won't print the credentials here if it was a real project
         sh "${SERVER_CREDENTISALS}"
