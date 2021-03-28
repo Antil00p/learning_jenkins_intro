@@ -1,8 +1,8 @@
-pipeline {
-  agent any
+pipeline {  //Required, must be top-level
+  agent any //Required - where to execute
   
-  stages {
-    stage("build") {
+  stages {  //Required - where the work happens
+    stage("build") {  //Can declare as many stages as we like
       steps {
         echo 'building the application'
         echo 'application built'
